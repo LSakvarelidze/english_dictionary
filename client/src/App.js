@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans p-6 md:p-12">
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max mx-auto space-y-8">
         
         {/* Header */}
         <header className="text-center space-y-2">
@@ -65,7 +65,7 @@ function App() {
         </header>
 
         {/* Input Section (Add Word) */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="bg-white p-6 rounded-4xl shadow-sm border border-slate-100">
           <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
@@ -104,28 +104,35 @@ function App() {
         </div>
 
         {/* Word Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {words.length > 0 ? (
-            words.map((item) => (
-              <div key={item._id} className="group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex justify-between items-center">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-800">{item.english}</h3>
-                  <p className="text-lg text-indigo-500 mt-1">{item.georgian}</p>
-                </div>
-                <button 
-                  onClick={() => handleDelete(item._id)}
-                  className="text-slate-300 hover:text-red-400 opacity-0 group-hover:opacity-100 transition"
-                >
-                  <Trash2 size={18} />
-                </button>
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-12 text-slate-400">
-              No words found. Add some above!
-            </div>
-          )}
+<div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+  {words.length > 0 ? (
+    words.map((item) => (
+      <div
+        key={item._id}
+        className="group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex justify-between items-center"
+      >
+        <div>
+          <h3 className="text-xl font-bold text-slate-800">
+            {item.english}
+          </h3>
+          <p className="text-lg text-indigo-500 mt-1">
+            {item.georgian}
+          </p>
         </div>
+        <button
+          onClick={() => handleDelete(item._id)}
+          className="text-slate-300 hover:text-red-400 opacity-0 group-hover:opacity-100 transition"
+        >
+          <Trash2 size={18} />
+        </button>
+      </div>
+    ))
+  ) : (
+    <div className="col-span-full text-center py-12 text-slate-400">
+      No words found. Add some above!
+    </div>
+  )}
+</div>
 
       </div>
     </div>
